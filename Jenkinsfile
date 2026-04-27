@@ -23,15 +23,15 @@ pipeline {
                 sh 'mvn compile'
             }
         }
-        stage('Deploy on Kubernetes') {
+      stage('Deploy on Kubernetes') {
     steps {
         sh '''
-            kubectl apply -f /home/vagrant/hello-k8s/namespace.yaml
-            kubectl apply -f /home/vagrant/hello-k8s/mysql-deployment.yaml -n devops
-            kubectl apply -f /home/vagrant/hello-k8s/spring-configmap.yaml -n devops
-            kubectl apply -f /home/vagrant/hello-k8s/spring-secret.yaml -n devops
-            kubectl apply -f /home/vagrant/hello-k8s/spring-deployment.yaml -n devops
-            kubectl apply -f /home/vagrant/hello-k8s/spring-service.yaml -n devops
+            kubectl apply -f /home/vagrant/hello-k8s/namespace.yaml || true
+            kubectl apply -f /home/vagrant/hello-k8s/mysql-deployment.yaml -n devops || true
+            kubectl apply -f /home/vagrant/hello-k8s/spring-configmap.yaml -n devops || true
+            kubectl apply -f /home/vagrant/hello-k8s/spring-secret.yaml -n devops || true
+            kubectl apply -f /home/vagrant/hello-k8s/spring-deployment.yaml -n devops || true
+            kubectl apply -f /home/vagrant/hello-k8s/spring-service.yaml -n devops || true
         '''
     }
 }
